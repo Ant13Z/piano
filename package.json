@@ -3,36 +3,48 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "server": "node ./backend/index"
+    "backend": "node backend/index",
+    "dev-backend": "nodemon backend/index --config \"config/nodemon.json\"",
+    "frontend": "webpack --progress --env.mode=prod --config=\"config/webpack.config.js\"",
+    "dev-frontend": "webpack-dev-server --color --progress --env.mode=dev --config=\"config/webpack.config.js\"",
+    "migrate-create": "db-migrate create db --config \"config/db.conf.json\"",
+    "migrate-apply": "db-migrate up --config \"config/db.conf.json\""
   },
   "dependencies": {
+    "@angular/animations": "^7.0.0",
     "@angular/common": "^7.0.0",
     "@angular/compiler": "^7.0.0",
     "@angular/core": "^7.0.0",
     "@angular/forms": "^7.0.0",
+    "@angular/http": "7.0.0",
     "@angular/platform-browser": "^7.0.0",
     "@angular/platform-browser-dynamic": "^7.0.0",
     "@angular/router": "^7.0.0",
-    "@angular/http": "7.0.0",
-    "@angular/animations": "^7.0.0",
+    "@ng-bootstrap/ng-bootstrap": "4.0.x",
+    "bootstrap": "4.3.x",
     "core-js": "^2.5.7",
-    "rxjs":"^6.3.3",
-    "zone.js": "^0.8.26",
-    "cookie-parser": "^1.4.3",
+    "db-migrate": "^0.11.5",
+    "db-migrate-sqlite3": "^0.4.0",
     "ejs": "^2.6.1",
     "express": "^4.16.0",
-    "@ng-bootstrap/ng-bootstrap": "4.0.x",
-    "bootstrap": "4.3.x"
+    "rxjs": "^6.3.3",
+    "sqlite3": "^4.0.6",
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@types/node":"^10.12.0",
+    "@types/node": "^10.12.26",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "codelyzer": "^4.5.0",
+    "html-loader": "^0.5.5",
+    "raw-loader": "^1.0.0",
+    "css-loader": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.0",
+    "tslint": "^5.12.1",
     "typescript": "^3.0.0",
     "webpack": "^4.21.0",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9",
-    "angular2-template-loader": "^0.6.2",
-    "awesome-typescript-loader": "^5.2.1",
-    "uglifyjs-webpack-plugin": "^2.0.0",
-
+    "webpack-dev-server": "^3.1.9"
   }
 }

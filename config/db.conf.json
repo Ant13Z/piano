@@ -1,0 +1,12 @@
+{
+  "dev": {
+    "driver": "sqlite3",
+    "filename": "../backend/db.sqlite3"
+  },
+  "prod": {
+    "driver": "sqlite3",
+    "filename": "../backend/db.sqlite3"
+  },
+  "sql-file" : true,
+  "migrations-dir": "../backend/migrate"
+}

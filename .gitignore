@@ -2,3 +2,5 @@
 node_modules/
 *.iml
 *.sqlite3
+# для ide
+./tsconfig.json
