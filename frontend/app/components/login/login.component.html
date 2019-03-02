@@ -1,0 +1,56 @@
+<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <div class="form-group">
+        <label for="authLogin">Логин (e-mail):</label>
+        <div class="input-group">
+            <input
+                type="text"
+                class="form-control"
+                id="authLogin"
+                formControlName="authLogin"
+                appCheckLogin
+                appCheckLoginType="isset"
+            >
+            <div class="input-group-append" *ngIf="loginForm.get('authLogin').invalid">
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="loginForm.get('authLogin').errors['required']"
+                >*</span>
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="loginForm.get('authLogin').errors['pattern'] && loginForm.get('authLogin').touched"
+                >Не корректный email</span>
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="loginForm.get('authLogin').errors['checkLogin']"
+                >Данный логин не найден</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="authPass">Пароль:</label>
+        <div class="input-group">
+            <input type="password" class="form-control" id="authPass" formControlName="authPass">
+            <div class="input-group-append" *ngIf="loginForm.get('authPass').invalid">
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="loginForm.get('authPass').errors['required']"
+                >*</span>
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="
+                        loginForm.get('authPass').errors['minlength']
+                        || loginForm.get('authPass').errors['maxlength']
+                    "
+                >Пароль должен быть более 6 и менее 255 символов</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="invalidLogPass">
+        <div class="alert alert-danger" role="alert">
+            Неверная пара Логин-Пароль
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Авторизоваться</button>
+    </div>
+</form>

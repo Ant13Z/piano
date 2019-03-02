@@ -1,0 +1,91 @@
+<form [formGroup]="signupForm" (ngSubmit)="addUser()">
+    <div class="form-group">
+        <label for="regLogin">Логин (e-mail):</label>
+        <div class="input-group">
+            <input
+                type="text"
+                class="form-control"
+                id="regLogin"
+                appCheckLogin
+                appCheckLoginType="uniq"
+                formControlName="regLogin"
+            />
+            <div
+                class="input-group-append"
+                *ngIf="signupForm.get('regLogin').invalid"
+            >
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="signupForm.get('regLogin').errors['required']"
+                >*</span>
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="signupForm.get('regLogin').errors['pattern'] && signupForm.get('regLogin').touched"
+                >Не корректный email</span>
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="signupForm.get('regLogin').errors['checkLogin']"
+                >Данный логин уже занят</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="regPass">Пароль:</label>
+        <div class="input-group">
+            <input
+                type="password"
+                class="form-control"
+                id="regPass"
+                formControlName="regPass"
+            />
+            <div
+                class="input-group-append"
+                *ngIf="signupForm.get('regPass').invalid"
+            >
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="signupForm.get('regPass').errors['required']"
+                >*</span>
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="
+                        signupForm.get('regPass').errors['minlength']
+                        || signupForm.get('regPass').errors['maxlength']
+                    "
+                >Пароль должен быть более 6 и менее 255 символов</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="regPassRepeat">Повторите пароль:</label>
+        <div class="input-group">
+            <input
+                type="password"
+                class="form-control"
+                id="regPassRepeat"
+                appCompare="regPass"
+                formControlName="regPassRepeat"
+            />
+            <div
+                class="input-group-append"
+                *ngIf="signupForm.get('regPassRepeat').invalid"
+            >
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="signupForm.get('regPassRepeat').errors['required']"
+                >*</span>
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="signupForm.get('regPassRepeat').errors['compare']"
+                >Пароли не совпадают</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="signupForm.invalid"
+        >Регистрация</button>
+    </div>
+</form>

@@ -1,0 +1,17 @@
+<ul class="nav">
+    <li class="nav-item" *ngIf="!isAuth">
+        <a class="nav-link" routerLink="/login" routerLinkActive="disabled">Авторизация</a>
+    </li>
+    <li class="nav-item" *ngIf="!isAuth">
+        <a class="nav-link" routerLink="/forgot" routerLinkActive="disabled">Восстановление пароля</a>
+    </li>
+    <li class="nav-item" *ngIf="!isAuth">
+        <a class="nav-link" routerLink="/signup" routerLinkActive="disabled">Регистрация</a>
+    </li>
+    <li class="nav-item" *ngIf="isAuth">
+        <a class="nav-link" routerLink="/search" routerLinkActive="disabled">Поиск</a>
+    </li>
+    <li class="nav-item" *ngIf="isAuth">
+        <a class="nav-link" (click)="logoff()" routerLink="/">Выход</a>
+    </li>
+</ul>

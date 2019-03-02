@@ -1,0 +1,40 @@
+<form [formGroup]="forgotForm" (ngSubmit)="forgotUser()">
+    <div class="form-group">
+        <label for="forgotLogin">Логин (e-mail):</label>
+        <div class="input-group">
+            <input
+                type="text"
+                class="form-control"
+                id="forgotLogin"
+                formControlName="forgotLogin"
+                appCheckLogin
+                appCheckLoginType="isset"
+            >
+            <div
+                class="input-group-append"
+                *ngIf="forgotForm.get('forgotLogin').invalid"
+            >
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="forgotForm.get('forgotLogin').errors['required']"
+                >*</span>
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="forgotForm.get('forgotLogin').errors['pattern'] && forgotForm.get('forgotLogin').touched"
+                >Не корректный email</span>
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="forgotForm.get('forgotLogin').errors['checkLogin']"
+                >Данный логин не найден</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="forgotPass">
+        <div class="alert alert-success" role="alert">
+            Ваш новый пароль: <b>{{ forgotPass }}</b>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="forgotForm.invalid">Восстановить пароль</button>
+    </div>
+</form>

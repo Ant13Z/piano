@@ -8,7 +8,7 @@ module.exports = {
         'app': config.getPath('frontend/main.ts')
     },
     output:{
-        path: config.getPath('frontend/assets/js'),
+        path: config.getPath('public'),
         publicPath: '/',
         filename: "[name].js"
     },
@@ -42,7 +42,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: config.getPath('frontend/app'),
-                use: ['css-loader']
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.css$/,
@@ -58,6 +58,7 @@ module.exports = {
             {}
         ),
         new HtmlWebpackPlugin({
+            path: config.getPath('public'),
             template: config.getPath('frontend/index.html')
         }),
     ]
