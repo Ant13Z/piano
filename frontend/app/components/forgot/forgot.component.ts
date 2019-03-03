@@ -2,20 +2,20 @@ import { Component } from '@angular/core';
 import { ForgotService } from './forgot.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AppStore } from '../../store/app.store';
+import { AuthService } from '../auth.service';
 
 @Component({
     selector: 'app-forgot-component',
     templateUrl: './forgot.component.html',
-    providers: [ForgotService]
+    providers: [ForgotService, AuthService]
 })
 
 export class ForgotComponent {
     forgotForm: FormGroup;
     forgotPass: string|boolean = false;
 
-    constructor (private forgotService: ForgotService, private router: Router, private store: AppStore) {
-        if (store.getIsAuth()) this.router.navigate(['/']);
+    constructor (private forgotService: ForgotService, private router: Router, private auth: AuthService) {
+        if (auth.getIsAuth()) this.router.navigate(['/']);
         this.forgotForm = new FormGroup({
             'forgotLogin': new FormControl('', [
                 Validators.required,

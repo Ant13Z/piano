@@ -28,7 +28,7 @@ export class SearchComponent {
         this.searchForm.disable();
         this.notFound = false;
         const query = this.searchForm.get('searchText').value;
-        this.searchService.stackOverflowSearch({q: query}).subscribe(
+        this.searchService.stackOverflowSearchQuestions({q: query}).subscribe(
             (data) => {
                 this.searchForm.enable();
                 localStorage.setItem('search', JSON.stringify(data));

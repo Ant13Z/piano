@@ -1,14 +1,12 @@
-export interface ResponseSearchModel {
+export interface ResponseAnswersModel {
     has_more: boolean;
     items: [{
         answer_id: number;
-        answer_count: number;
         creation_date: number;
-        is_answered: boolean;
+        is_accepted: boolean;
         last_activity_date: number;
-        last_edit_date: number;
-        link: string;
         owner: {
+            accept_rate: number;
             display_name: string;
             link: string;
             profile_image: string;
@@ -18,9 +16,6 @@ export interface ResponseSearchModel {
         };
         question_id: number;
         score: number;
-        tags: [string];
-        title: string;
-        view_count: number;
     }];
     quota_max: number;
     quota_remaining: number;

@@ -16,14 +16,12 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SearchComponent } from './components/search/search/search.component';
 import { SearchListComponent } from './components/search/list/list.component';
 import { FastViewComponent } from './components/search/fast-view/fast-view.component';
-import { SearchElementComponent } from './components/search/element/element.component';
+import { SearchAnswersComponent } from './components/search/answers/answers.component';
 // директивы
 import { CompareDirective } from './directives/compare.directive';
 import { CheckLoginDirective } from './directives/checklogin.directive';
 // гварды
 import { AppGuard } from './guards/app.guard';
-// хранилища
-import { AppStore } from './store/app.store';
 
 const appRoutes: Routes = [
     { path: '', component: StartPageComponent},
@@ -32,7 +30,7 @@ const appRoutes: Routes = [
     { path: 'signup', component: SignupComponent},
     { path: 'search', component: SearchComponent, canActivate: [AppGuard], pathMatch: 'full'},
     { path: 'search/list', component: SearchListComponent, canActivate: [AppGuard], pathMatch: 'full'},
-    { path: 'search/list/:id', component: SearchElementComponent, canActivate: [AppGuard], pathMatch: 'full'},
+    { path: 'search/list/:id', component: SearchAnswersComponent, canActivate: [AppGuard], pathMatch: 'full'},
     { path: '**', redirectTo: '/' }
 ];
 
@@ -47,7 +45,7 @@ const appRoutes: Routes = [
         SearchComponent,
         SearchListComponent,
         FastViewComponent,
-        SearchElementComponent,
+        SearchAnswersComponent,
         CompareDirective,
         CheckLoginDirective
     ],
@@ -58,9 +56,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         HttpClientModule
     ],
-    providers: [
-        AppStore
-    ],
+    providers: [],
     bootstrap: [
         AppComponent
     ]

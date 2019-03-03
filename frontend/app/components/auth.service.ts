@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 
-export class AppStore {
+export class AuthService {
     private isAuth: boolean;
 
     constructor() {
@@ -16,6 +18,11 @@ export class AppStore {
     initAuth() {
         const isAuth = localStorage.getItem('token');
         this.isAuth = isAuth !== null;
+    }
+
+    setAuth(token: string) {
+        localStorage.setItem('token', token);
+        this.initAuth();
     }
 
     removeAuth() {

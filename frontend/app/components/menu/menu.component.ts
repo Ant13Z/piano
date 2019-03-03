@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { AppStore } from '../../store/app.store';
-
+import { AuthService } from '../auth.service';
 
 @Component({
     selector: 'app-menu-component',
-    templateUrl: './menu.component.html'
+    templateUrl: './menu.component.html',
+    providers: [AuthService]
 })
 
 export class MenuComponent {
     isAuth: boolean;
 
-    constructor (private store: AppStore, private router: Router) {
+    constructor (private router: Router, private auth: AuthService) {
         router.events.subscribe(
             e => {
                 if (e instanceof NavigationStart) {
-                    this.isAuth = store.getIsAuth();
+                    auth.initAuth();
+                    this.isAuth = auth.getIsAuth();
                 }
             }
         );
@@ -23,6 +24,6 @@ export class MenuComponent {
 
     logoff () {
         this.isAuth = false;
-        this.store.removeAuth();
+        this.auth.removeAuth();
     }
 }

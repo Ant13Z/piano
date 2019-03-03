@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { AppStore } from '../store/app.store';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '../components/auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,12 +10,10 @@ import { Router } from '@angular/router';
 
 export class AppGuard implements CanActivate {
 
-    constructor(private store: AppStore, private router: Router) {
-
-    }
+    constructor(private auth: AuthService, private router: Router) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-        if (this.store.getIsAuth()) {
+        if (this.auth.getIsAuth()) {
             return of(true);
         } else {
             this.router.navigate(['/']);

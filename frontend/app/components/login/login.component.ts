@@ -3,20 +3,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { UserModel } from './user.model';
-import { AppStore } from '../../store/app.store';
+import { AuthService } from '../auth.service';
 
 @Component({
     selector: 'app-login-component',
     templateUrl: './login.component.html',
-    providers: [LoginService]
+    providers: [LoginService, AuthService]
 })
 
 export class LoginComponent {
     loginForm: FormGroup;
     invalidLogPass = false;
 
-    constructor (private loginService: LoginService, private router: Router, private store: AppStore) {
-        if (store.getIsAuth()) this.router.navigate(['/']);
+    constructor (private loginService: LoginService, private router: Router, private auth: AuthService) {
+        if (auth.getIsAuth()) this.router.navigate(['/']);
         this.loginForm = new FormGroup({
             'authLogin': new FormControl('', [
                 Validators.required,
@@ -40,8 +40,7 @@ export class LoginComponent {
         this.loginService.authUser(user).subscribe(data => {
             this.loginForm.enable();
             if (!data.error.length) {
-                localStorage.setItem('token', data.token);
-                this.store.initAuth();
+                this.auth.setAuth(data.token);
                 this.invalidLogPass = false;
                 this.router.navigate(['/']);
             } else {

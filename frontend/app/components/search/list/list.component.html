@@ -1,35 +1,41 @@
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <ul class="list-group">
-                <li class="list-group-item" *ngFor="let item of list.items">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">
-                            <a href="javascript:void(0)" routerLink="/search/list/{{ item.question_id }}">
-                                {{ item.title }}
-                            </a>
-                        </h5>
-                        <small class="text-muted">
-                            <a href="javascript:void(0)" routerLink="/search/list/{{ item.question_id }}">
-                                {{ item.answer_count }}
-                            </a>
-                        </small>
-                    </div>
-                    <p class="mb-1">
-                        <a href="javascript:void(0)" (click)="getAuthorQuestion(item.owner.user_id)">
-                            Автор: {{ item.owner.display_name }}
+<div class="row">
+    <div class="col-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Вопрос</th>
+                    <th>Ответов</th>
+                    <th>Автор</th>
+                    <th>Теги</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of list.items">
+                    <td>
+                        <a href="javascript:void(0)" routerLink="/search/list/{{ item.question_id }}">
+                            {{ item.title }}
                         </a>
-                    </p>
-                    <small class="text-muted">
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)" routerLink="/search/list/{{ item.question_id }}">
+                            {{ item.answer_count }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)" (click)="getAuthorQuestion(item.owner.user_id)">
+                            {{ item.owner.display_name }}
+                        </a>
+                    </td>
+                    <td>
                         <a *ngFor="let tag of item.tags" href="javascript:void(0)" (click)="getTagQuestion(tag)">
                             #{{ tag }}
                         </a>
-                    </small>
-                </li>
-            </ul>
-        </div>
-        <div class="col">
-            <app-fast-view-component *ngIf="dataFastView" [data]="dataFastView"></app-fast-view-component>
-        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6">
+        <app-fast-view-component *ngIf="dataFastView" [data]="dataFastView"></app-fast-view-component>
     </div>
 </div>

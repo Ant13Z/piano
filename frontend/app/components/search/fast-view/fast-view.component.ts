@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ResponseSearchModel } from '../responsesearch.model';
+import { ResponseQuestionsModel } from '../response.questions.model';
 
 @Component({
     selector: 'app-fast-view-component',
@@ -8,7 +8,7 @@ import { ResponseSearchModel } from '../responsesearch.model';
 
 export class FastViewComponent {
 
-    @Input('data') data: ResponseSearchModel;
+    @Input('data') list: ResponseQuestionsModel;
 
     constructor () {}
 

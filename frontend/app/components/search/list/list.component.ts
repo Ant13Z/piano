@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchService } from '../search.service';
-import { ResponseSearchModel } from '../responsesearch.model';
+import { ResponseQuestionsModel } from '../response.questions.model';
 
 @Component({
     selector: 'app-search-list-component',
@@ -10,8 +10,8 @@ import { ResponseSearchModel } from '../responsesearch.model';
 })
 
 export class SearchListComponent {
-    list: ResponseSearchModel;
-    dataFastView: ResponseSearchModel | boolean = false;
+    list: ResponseQuestionsModel;
+    dataFastView: ResponseQuestionsModel | boolean = false;
 
     constructor (public searchService: SearchService, private router: Router) {
         this.list = JSON.parse(localStorage.getItem('search'));
@@ -20,7 +20,7 @@ export class SearchListComponent {
     // можно сделать одним методом
     getAuthorQuestion (userID: number) {
         this.dataFastView = false;
-        this.searchService.stackOverflowSearch({user: userID}).subscribe(
+        this.searchService.stackOverflowSearchQuestions({user: userID}).subscribe(
             (data) => {
                 this.dataFastView = data;
             }
@@ -29,7 +29,7 @@ export class SearchListComponent {
 
     getTagQuestion (tag: string) {
         this.dataFastView = false;
-        this.searchService.stackOverflowSearch({tagged: tag}).subscribe(
+        this.searchService.stackOverflowSearchQuestions({tagged: tag}).subscribe(
             (data) => {
                 this.dataFastView = data;
             }

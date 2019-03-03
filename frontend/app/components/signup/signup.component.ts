@@ -3,18 +3,19 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignupService } from './signup.service';
 import { UserModel } from './user.model';
-import { AppStore } from '../../store/app.store';
+import { AuthService } from '../auth.service';
 
 @Component({
     selector: 'app-signup-component',
     templateUrl: './signup.component.html',
-    providers: [SignupService]
+    providers: [SignupService, AuthService]
 })
 
 export class SignupComponent {
     signupForm: FormGroup;
-    constructor (private signupService: SignupService, private router: Router, private store: AppStore) {
-        if (store.getIsAuth()) this.router.navigate(['/']);
+
+    constructor (private signupService: SignupService, private router: Router, private auth: AuthService) {
+        if (auth.getIsAuth()) this.router.navigate(['/']);
         this.signupForm = new FormGroup({
             'regLogin': new FormControl('', [
                 Validators.required,

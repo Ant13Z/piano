@@ -1,22 +1,18 @@
-<ul class="list-group">
-    <li class="list-group-item" *ngFor="let item of data.items">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">
-                <a href="#">{{ item.title }}</a>
-            </h5>
-            <small class="text-muted">
-                <a href="#">{{ item.answer_count }}</a>
-            </small>
-        </div>
-        <p class="mb-1">
-            <a href="#">
-                Автор: {{ item.owner.display_name }}
-            </a>
-        </p>
-        <small class="text-muted">
-            <a *ngFor="let tag of item.tags" href="#">
-                #{{ tag }}
-            </a>
-        </small>
-    </li>
-</ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Вопрос</th>
+            <th>Ответов</th>
+            <th>Автор</th>
+            <th>Теги</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of list.items">
+            <td>{{ item.title }}</td>
+            <td>{{ item.answer_count }}</td>
+            <td>{{ item.owner.display_name }}</td>
+            <td><span *ngFor="let tag of item.tags" href="javascript:void(0)">#{{ tag }}</span></td>
+        </tr>
+    </tbody>
+</table>

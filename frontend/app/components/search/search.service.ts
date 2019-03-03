@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ResponseSearchModel } from './responsesearch.model';
+import { ResponseQuestionsModel } from './response.questions.model';
+import { ResponseAnswersModel } from './response.answers.model';
 
 @Injectable()
 
@@ -12,16 +13,16 @@ export class SearchService {
     // http://api.stackexchange.com/docs/advanced-search
     // на самом деле здесь тонна варинтов куда временно сложить полученные данные, сделаем самый простой
     // самым верным вариантом, было бы вообще не делать сейчас запрос
-    stackOverflowSearch(queryParam: {}): Observable<ResponseSearchModel> {
+    stackOverflowSearchQuestions(queryParam: {}): Observable<ResponseQuestionsModel> {
         let urlMethod = '/search/advanced?order=desc&sort=activity&site=stackoverflow';
         for (const key in queryParam)
             urlMethod += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(queryParam[key]);
-        return this.http.get<ResponseSearchModel>(this.apiUrl + urlMethod);
+        return this.http.get<ResponseQuestionsModel>(this.apiUrl + urlMethod);
     }
 
-    stackOverflowSearchAnswers(id: number): Observable<ResponseSearchModel> {
+    stackOverflowSearchAnswers(id: number): Observable<ResponseAnswersModel> {
         const urlMethod = `/questions/${id}/answers?order=desc&sort=activity&site=stackoverflow`;
-        return this.http.get<ResponseSearchModel>(this.apiUrl + urlMethod);
+        return this.http.get<ResponseAnswersModel>(this.apiUrl + urlMethod);
     }
 
 }
