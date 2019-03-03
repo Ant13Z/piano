@@ -13,7 +13,10 @@ import { StartPageComponent } from './components/startpage/startpage.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { SearchComponent } from './components/search/search.component';
+import { SearchComponent } from './components/search/search/search.component';
+import { SearchListComponent } from './components/search/list/list.component';
+import { FastViewComponent } from './components/search/fast-view/fast-view.component';
+import { SearchElementComponent } from './components/search/element/element.component';
 // директивы
 import { CompareDirective } from './directives/compare.directive';
 import { CheckLoginDirective } from './directives/checklogin.directive';
@@ -27,7 +30,9 @@ const appRoutes: Routes = [
     { path: 'forgot', component: ForgotComponent},
     { path: 'login', component: LoginComponent},
     { path: 'signup', component: SignupComponent},
-    { path: 'search', component: SearchComponent, canActivate: [AppGuard]},
+    { path: 'search', component: SearchComponent, canActivate: [AppGuard], pathMatch: 'full'},
+    { path: 'search/list', component: SearchListComponent, canActivate: [AppGuard], pathMatch: 'full'},
+    { path: 'search/list/:id', component: SearchElementComponent, canActivate: [AppGuard], pathMatch: 'full'},
     { path: '**', redirectTo: '/' }
 ];
 
@@ -40,6 +45,9 @@ const appRoutes: Routes = [
         MenuComponent,
         StartPageComponent,
         SearchComponent,
+        SearchListComponent,
+        FastViewComponent,
+        SearchElementComponent,
         CompareDirective,
         CheckLoginDirective
     ],

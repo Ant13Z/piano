@@ -1,0 +1,28 @@
+<form [formGroup]="searchForm" (ngSubmit)="search()">
+    <div class="form-group">
+        <label for="searchText">Что ищем?</label>
+        <div class="input-group">
+            <input
+                type="text"
+                class="form-control"
+                id="searchText"
+                formControlName="searchText"
+            >
+            <div
+                class="input-group-append"
+                *ngIf="searchForm.get('searchText').invalid"
+            >
+                <span
+                    class="input-group-text list-group-item-danger"
+                    *ngIf="searchForm.get('searchText').errors['required']"
+                >*</span>
+            </div>
+            <div class="input-group-append" *ngIf="notFound">
+                <span class="input-group-text list-group-item-danger">По запросу ничего не найдено</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">Найти</button>
+    </div>
+</form>

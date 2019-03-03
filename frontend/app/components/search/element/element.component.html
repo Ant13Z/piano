@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row" *ngIf="list">
+        <div class="col" *ngIf="list.items.length">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of list.items">
+                    <p class="mb-1">
+                        <a href="javascript:void(0)">
+                            Автор: {{ item.owner.display_name }}
+                        </a>
+                    </p>
+                    <small class="text-muted">
+                        <a
+                            href="https://stackoverflow.com/questions/{{ elementID }}/{{ item.answer_id }}#{{ item.answer_id }}"
+                            target="_blank"
+                        >
+                            Посмотреть содержимое
+                        </a>
+                    </small>
+                </li>
+            </ul>
+        </div>
+        <div class="col" *ngIf="!list.items.length">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">К данном вопросу нет комментариев</h5>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
