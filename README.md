@@ -20,12 +20,15 @@
     a. бутстрап 4 не работает для ie9; нужно устанавливать бутстрап 3;
     
     b. идет редирект 'called the hash' (ссылки на проблему снизу). суть проблемы в том что юрлы ангуляра для ie9 нужно строить по типу {domain}/#/{url}
+        ```
         https://stackoverflow.com/questions/45881466/ie9-pathlocationstrategy-angular-4
         https://stackoverflow.com/questions/52563837/angular-using-in-urls       
+        ```
     если ie9 критичен по заданию, то нужен фидбек, и я доделаю его поддержку
     
 ### Развертка 
 
 ```
-здесь будет инструкция по развертке
+1) git clone https://github.com/Ant13Z/piano.git . && npm install && npm run migrate-apply && npm run frontend && npm run backend
+2) go to http://localhost:3000/
 ```
