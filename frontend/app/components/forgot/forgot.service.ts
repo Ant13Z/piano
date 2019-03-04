@@ -6,7 +6,8 @@ import { ResponseModel } from './response.model';
 @Injectable()
 
 export class ForgotService {
-    apiUrl = 'http://localhost:3000/api/user/';
+    apiUrl = '/api/user/';
+
     constructor(private http: HttpClient) {}
 
     forgotUser(login: string): Observable<ResponseModel> {

@@ -8,7 +8,8 @@ import { ResponseModel } from './response.model';
 @Injectable()
 
 export class SignupService {
-    apiUrl = 'http://localhost:3000/api/user/';
+    apiUrl = '/api/user/';
+
     constructor(private http: HttpClient) {}
 
     createUser(user: UserModel): Observable<{resp: ResponseModel}> {

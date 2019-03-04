@@ -61,5 +61,12 @@ module.exports = {
             path: config.getPath('public'),
             template: config.getPath('frontend/index.html')
         }),
-    ]
+    ],
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000'
+            }
+        }
+    }
 };

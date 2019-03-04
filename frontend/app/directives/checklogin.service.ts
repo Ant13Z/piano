@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 
 export class CheckLoginService {
-    apiUrl = 'http://localhost:3000/api/user/';
+    apiUrl = '/api/user/';
     constructor(private http: HttpClient) {}
 
     checkUser(userLogin: string): Observable<string> {

@@ -7,7 +7,7 @@ import { ResponseModel } from './response.model';
 @Injectable()
 
 export class LoginService {
-    apiUrl = 'http://localhost:3000/api/user/auth/';
+    apiUrl = '/api/user/auth/';
 
     constructor(private http: HttpClient) {}
 
